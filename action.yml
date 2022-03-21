@@ -1,0 +1,19 @@
+name: Install EB CLI
+description: Installs the Elastic Beanstalk CLI to the GitHub Actions runner
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: 'aws/aws-elastic-beanstalk-cli-setup'
+        path: 'aws-elastic-beanstalk-cli-setup'
+        branch: 'master'
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - run: pipx install virtualenv
+      shell: bash
+    - run: python $GITHUB_WORKSPACE/aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py
+      shell: bash
+    - run: echo "~/.ebcli-virtual-env/executables" >> $GITHUB_PATH
+      shell: bash
