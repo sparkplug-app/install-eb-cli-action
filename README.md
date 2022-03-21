@@ -1,8 +1,7 @@
 # Install-EB-CLI-Action
-Install the Elastic Beanstalk CLI to the GitHub runner
+This GitHub Action install the Elastic Beanstalk CLI directly to the GitHub runner, for use in subsequent actions.  It persists the executable to the runner's PATH, so it can be used as you would expect in any other environment.
 
-# Usage
-See [action.yml](action.yml)
+# Examples
 
 **NOTE:** This Action presumes that you have AWS credentials appropriately configured in the GitHub environment.
 
