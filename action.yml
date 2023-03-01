@@ -25,8 +25,8 @@ runs:
       shell: bash
 
     - name: Install specific EB CLI version
-      if: "${{ inputs.version == '' }}"
-      run: python $GITHUB_WORKSPACE/aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py --version ${{ inputs.version == '' }}"
+      if: "${{ inputs.version != '' }}"
+      run: python $GITHUB_WORKSPACE/aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py --version ${{ inputs.version }}"
       shell: bash
 
     - run: echo "~/.ebcli-virtual-env/executables" >> $GITHUB_PATH
