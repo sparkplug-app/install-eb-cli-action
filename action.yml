@@ -22,6 +22,7 @@ runs:
     - name: Install latest EB CLI version
       if: "${{ github.event.inputs.version == '' }}"
       run: python $GITHUB_WORKSPACE/aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py
+      shell: bash
 
     - name: Install specific EB CLI version
       if: "${{ github.event.inputs.version != '' }}"
