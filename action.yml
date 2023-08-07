@@ -14,7 +14,7 @@ runs:
         branch: 'master'
     - uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.8'
 
     - run: pipx install virtualenv
       shell: bash
