@@ -2,12 +2,12 @@ name: Install EB CLI
 description: Installs the Elastic Beanstalk CLI to the GitHub Actions runner
 inputs:
   version:
-    description: Version of the EB CLI that will be installed (such as 3.20.3).  Will default to latest if not specified.
+    description: Version of the EB CLI that will be installed (such as 3.20.3). Will default to latest if not specified.
     required: false
   python-version:
     description: Version of Python to use (such as 3.8). Will default to the latest Python 3.x if not specified.
     required: false
-    default: '3.x
+    default: '3.x'
 runs:
   using: 'composite'
   steps:
@@ -19,19 +19,15 @@ runs:
     - uses: actions/setup-python@v5
       with:
         python-version: ${{ inputs.python-version }}
-
     - run: pipx install virtualenv
       shell: bash
-
     - name: Install latest EB CLI version
-      if: "${{ inputs.version == '' }}"
+      if: ${{ inputs.version == '' }}
       run: python $GITHUB_WORKSPACE/aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py
       shell: bash
-
     - name: Install specific EB CLI version
-      if: "${{ inputs.version != '' }}"
+      if: ${{ inputs.version != '' }}
       run: python $GITHUB_WORKSPACE/aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py --version ${{ inputs.version }}
       shell: bash
-
     - run: echo "~/.ebcli-virtual-env/executables" >> $GITHUB_PATH
       shell: bash
